@@ -19,6 +19,7 @@ Os relatórios de validação e revisão são evidência histórica datada. Não
 
 | Documento | Finalidade |
 |---|---|
+| [`environment-recovery.md`](environment-recovery.md) | Locais seguros para configuração e segredos, além do procedimento para reconstruir o ambiente. |
 | [`civic-validation-report.md`](civic-validation-report.md) | Resultados e falhas observadas em execuções datadas; separa etapas aprovadas das que não terminaram. |
 | [`civic-code-review.md`](civic-code-review.md) | Revisão read-only da implementação cívica e lacunas identificadas naquela revisão. |
 | [`civic-implementation-sources.md`](civic-implementation-sources.md) | Endpoints, medições e limites das fontes consultadas; não promete cobertura contínua. |
