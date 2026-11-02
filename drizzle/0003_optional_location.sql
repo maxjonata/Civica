@@ -1,0 +1,11 @@
+ALTER TABLE civica_civic_proposals
+  MODIFY COLUMN municipality_code CHAR(7) NULL DEFAULT NULL,
+  MODIFY COLUMN municipality VARCHAR(120) NULL DEFAULT NULL,
+  MODIFY COLUMN state CHAR(2) NULL DEFAULT NULL,
+  MODIFY COLUMN area_label VARCHAR(120) NULL DEFAULT NULL,
+  MODIFY COLUMN latitude DECIMAL(9,6) NULL DEFAULT NULL,
+  MODIFY COLUMN longitude DECIMAL(9,6) NULL DEFAULT NULL,
+  MODIFY COLUMN location_precision VARCHAR(24) NOT NULL DEFAULT 'not_provided';
+
+INSERT IGNORE INTO civica_civic_schema_migrations (version, applied_at)
+VALUES ('0003_optional_location_v1', UNIX_TIMESTAMP() * 1000);

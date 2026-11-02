@@ -1,0 +1,30 @@
+name: Quality gates
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --global pnpm@10.34.5
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm quality
+      - name: Isolated SQL tests
+        run: |
+          sudo apt-get update -qq
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq mariadb-server
+          sudo service mariadb start
+          pnpm test:database
+      - name: Browser protocol tests
+        run: |
+          pnpm exec playwright install --with-deps chromium
+          node scripts/test-browser.mjs
+# This file only runs after connecting to a GitHub repository. It is not remote CI on the current Manus canonical repository.
